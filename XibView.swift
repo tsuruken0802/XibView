@@ -1,13 +1,13 @@
 //
 //  XibView.swift
 //
-//
-//  Created by 鶴本賢太朗 on 2018/05/22.
-//  Copyright © 2018年 Kentarou. All rights reserved.
+//  Created by 鶴本 賢太朗 on 2020/06/22.
+//  Copyright © 2020 鶴本 賢太朗. All rights reserved.
 //
 
 import UIKit
 
+/// Xibで作成したViewをコードや他のXibから呼び出せるようにするView
 class XibView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -17,10 +17,13 @@ class XibView: UIView {
         super.init(coder: aDecoder)
         self.loadView()
     }
+}
+
+extension XibView {
+    /// XibのViewを呼び出す
     private func loadView() {
         let className: String = String(describing: type(of: self))
         let view: UIView = Bundle.main.loadNibNamed(className, owner: self, options: nil)?.first as! UIView
-        view.backgroundColor = .clear
         view.frame = self.bounds
         self.addSubview(view)
     }
