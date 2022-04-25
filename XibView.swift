@@ -19,11 +19,11 @@ class XibView: UIView {
     }
 }
 
-extension XibView {
+private extension XibView {
     /// XibのViewを呼び出す
-    private func loadView() {
-        let className: String = String(describing: type(of: self))
-        let view: UIView = Bundle.main.loadNibNamed(className, owner: self, options: nil)?.first as! UIView
+    func loadView() {
+        let className = String(describing: type(of: self))
+        let view = Bundle.main.loadNibNamed(className, owner: self, options: nil)?.first as! UIView
         view.frame = self.bounds
         self.addSubview(view)
     }
